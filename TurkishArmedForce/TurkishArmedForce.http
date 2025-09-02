@@ -1,0 +1,6 @@
+@TurkishArmedForce_HostAddress = http://localhost:5120
+
+GET {{TurkishArmedForce_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
