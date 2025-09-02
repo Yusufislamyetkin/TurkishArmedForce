@@ -1,11 +1,36 @@
-# IDE directories
+# Build
+bin/
+obj/
+**/bin/
+**/obj/
+out/
+artifacts/
+
+# IDEs
 .vs/
 .vscode/
 .idea/
 
-# Build output
-bin/
-obj/
+# User files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Node
+node_modules/
 
 # OS
 .DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Env files
+.env

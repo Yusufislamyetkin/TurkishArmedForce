@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-# TODO: implement
+set -euo pipefail
+
+echo "Database migration script will be implemented in Phase 4."

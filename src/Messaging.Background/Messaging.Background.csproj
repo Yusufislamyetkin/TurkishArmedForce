@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="../Messaging.Application/Messaging.Application.csproj" />
-    <ProjectReference Include="../Messaging.Infrastructure/Messaging.Infrastructure.csproj" />
-  </ItemGroup>
-</Project>

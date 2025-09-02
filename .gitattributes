@@ -1,1 +1,12 @@
 * text=auto eol=lf
+
+# Scripts
+*.sh text eol=lf
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
