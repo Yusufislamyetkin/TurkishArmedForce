@@ -1,0 +1,4 @@
+# Services will be defined in Compose Prompt 3
+version: '3.9'
+services:
+  # placeholder
