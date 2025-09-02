@@ -20,6 +20,11 @@ public class Room : BaseEntity
 
     public void Join(UserId userId)
     {
+        if (_members.Any(m => m.UserId == userId))
+        {
+            return;
+        }
+
         var member = new RoomMember(userId);
         _members.Add(member);
         AddDomainEvent(new RoomJoinedDomainEvent(Id, userId, DateTime.UtcNow));
