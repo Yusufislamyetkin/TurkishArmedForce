@@ -4,13 +4,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../Turna96.Application/Turna96.Application.csproj" />
-    <ProjectReference Include="../Turna96.Domain/Turna96.Domain.csproj" />
-    <ProjectReference Include="../Turna96.SharedKernel/Turna96.SharedKernel.csproj" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507" PrivateAssets="all" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Turna96.Application\Turna96.Application.csproj" />
+    <ProjectReference Include="..\Turna96.Domain\Turna96.Domain.csproj" />
+    <ProjectReference Include="..\Turna96.SharedKernel\Turna96.SharedKernel.csproj" />
   </ItemGroup>
 </Project>

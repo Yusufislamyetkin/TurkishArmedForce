@@ -4,20 +4,23 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../Turna96.Application/Turna96.Application.csproj" />
-    <ProjectReference Include="../Turna96.Infrastructure/Turna96.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507" PrivateAssets="all" IncludeAssets="runtime;build;native;contentfiles;analyzers;buildtransitive" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.6.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.6.0" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.6.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Otlp" Version="1.6.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.5.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.5.0" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.5.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Otlp" Version="1.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Turna96.Application\Turna96.Application.csproj" />
+    <ProjectReference Include="..\Turna96.Infrastructure\Turna96.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
