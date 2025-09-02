@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-# TODO: implement
+set -euo pipefail
+
+(cd ops/compose && docker compose down -v)
