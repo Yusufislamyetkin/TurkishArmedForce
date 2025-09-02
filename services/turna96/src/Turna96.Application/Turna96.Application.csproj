@@ -9,6 +9,8 @@
     <ProjectReference Include="../Turna96.Domain/Turna96.Domain.csproj" />
     <ProjectReference Include="../Turna96.SharedKernel/Turna96.SharedKernel.csproj" />
     <PackageReference Include="FluentValidation" Version="11.8.1" />
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="MapsterMapper" Version="7.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
