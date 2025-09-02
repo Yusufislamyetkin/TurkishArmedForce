@@ -1,17 +1,7 @@
-# Turkish Armed Force Messaging System
+# Turkish Armed Force Monorepo
 
-This repository contains the base solution skeleton for the messaging system.
+TURNA96 çözüm iskeletini ve ilgili servisleri içerir.
 
-## Getting Started
+## Geliştirme
 
-1. Ensure the .NET 8 SDK is installed.
-2. Restore and build the solution:
-   ```bash
-   dotnet restore
-   dotnet build
-   ```
-3. Run the web API:
-   ```bash
-   dotnet run --project src/Messaging.Api
-   ```
-4. Other applications such as the realtime hub, background worker, gateway and auth server can be executed with `dotnet run` targeting their respective project files.
+Docker veya yerel dotnet 8 ortamında `dotnet restore && dotnet build && dotnet test` komutlarıyla çalıştırabilirsiniz.
