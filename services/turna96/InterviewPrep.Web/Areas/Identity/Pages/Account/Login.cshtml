@@ -1,0 +1,49 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-xl-5">
+        <div class="auth-card card">
+            <div class="card-body">
+                <h2 class="fw-bold text-white text-center mb-4">Tekrar hoş geldin!</h2>
+                <p class="text-secondary text-center mb-4">
+                    Bugünkü mülakat görevin seni bekliyor. Streak'ini bozmadan ilerlemek için oturum aç.
+                </p>
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="Input.Email" class="form-label"></label>
+                        <input asp-for="Input.Email" class="form-control form-control-lg" autocomplete="username" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <a class="link-light-muted small" asp-page="./ForgotPassword">Parolamı unuttum</a>
+                        </div>
+                        <input asp-for="Input.Password" class="form-control form-control-lg" autocomplete="current-password" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-4 form-check">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        <label class="form-check-label" asp-for="Input.RememberMe"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Giriş yap</button>
+                </form>
+                <div class="mt-4 text-center text-secondary">
+                    Hesabın yok mu? <a class="link-light" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Hemen kayıt ol</a>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-secondary mt-3 small">
+            Çok faktörlü doğrulama etkinse bir sonraki adımda kod isteyeceğiz.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

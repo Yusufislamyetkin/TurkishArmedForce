@@ -1,0 +1,71 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-xl-6">
+        <div class="auth-card card">
+            <div class="card-body">
+                <h2 class="fw-bold text-white text-center mb-3">Mülakat yolculuğuna başla</h2>
+                <p class="text-secondary text-center mb-4">
+                    Sorumluluk alanlarını seç, hedef seviyeni belirle ve kişiselleştirilmiş soru akışını aç.
+                </p>
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label asp-for="Input.FullName" class="form-label"></label>
+                            <input asp-for="Input.FullName" class="form-control form-control-lg" autocomplete="name" />
+                            <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Input.CurrentRole" class="form-label"></label>
+                            <input asp-for="Input.CurrentRole" class="form-control form-control-lg" placeholder="Örn. Backend Dev" />
+                            <span asp-validation-for="Input.CurrentRole" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Input.TargetLevel" class="form-label"></label>
+                            <select asp-for="Input.TargetLevel" class="form-select form-select-lg">
+                                <option>Junior</option>
+                                <option>Middle</option>
+                                <option>Senior</option>
+                                <option>Lead</option>
+                            </select>
+                            <span asp-validation-for="Input.TargetLevel" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <input asp-for="Input.Email" class="form-control form-control-lg" autocomplete="username" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Input.Password" class="form-label"></label>
+                            <input asp-for="Input.Password" class="form-control form-control-lg" autocomplete="new-password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control form-control-lg" autocomplete="new-password" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Hesabımı oluştur</button>
+                </form>
+                <div class="mt-4 text-center text-secondary">
+                    Zaten hesabın var mı? <a class="link-light" asp-page="./Login">Giriş yap</a>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-dark bg-opacity-50 border-0 mt-3">
+            <div class="card-body text-secondary text-center small">
+                Kayıt olarak kullanım şartlarımızı ve gizlilik politikamızı kabul etmiş olursun.
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
