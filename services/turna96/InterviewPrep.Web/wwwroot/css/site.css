@@ -86,3 +86,30 @@ body {
 .table-progress td {
     vertical-align: middle;
 }
+
+[data-practice-root] .card {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+[data-practice-root] .card:hover {
+    transform: translateY(-4px);
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+[data-practice-score] {
+    min-width: 3rem;
+    display: inline-block;
+    text-align: right;
+}
+

@@ -1,6 +1,10 @@
 using InterviewPrep.Web.Data;
 using InterviewPrep.Web.Models;
 using InterviewPrep.Web.Services.Email;
+
+using InterviewPrep.Web.Services.Questions;
+
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +34,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddSingleton<IEmailSender, DebugEmailSender>();
+
+
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IPracticeSessionManager, PracticeSessionManager>();
+builder.Services.AddScoped<IQuestionModelFactory, QuestionModelFactory>();
+builder.Services.AddHttpClient<IAiQuestionService, AiQuestionService>();
+
 
 builder.Services.AddControllersWithViews();
 

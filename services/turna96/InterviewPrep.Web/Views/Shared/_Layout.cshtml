@@ -1,3 +1,10 @@
+
+@using Microsoft.AspNetCore.Identity
+@using InterviewPrep.Web.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -22,6 +29,21 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">Gizlilik</a></li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var currentUser = await UserManager.GetUserAsync(User);
+                            var isAdmin = currentUser is not null && await UserManager.IsInRoleAsync(currentUser, "Admin");
+                            if (isAdmin)
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Questions" asp-action="Index">Soru Yönetimi</a></li>
+                            }
+                            else
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Questions" asp-action="StartPractice">Pratik Başlat</a></li>
+                            }
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -46,6 +68,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

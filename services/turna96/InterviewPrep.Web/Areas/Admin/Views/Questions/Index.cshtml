@@ -1,0 +1,54 @@
+@model IReadOnlyList<InterviewPrep.Web.Areas.Admin.ViewModels.QuestionListItemViewModel>
+@{
+    ViewData["Title"] = "Soru Yönetimi";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold">Soru Havuzu</h2>
+        <p class="text-muted mb-0">AI destekli teknik soru havuzunu yönet.</p>
+    </div>
+    <a asp-action="Generate" class="btn btn-primary">
+        <i class="bi bi-stars"></i> AI'den üret
+    </a>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.StatusMessage as string))
+{
+    <div class="alert alert-success shadow-sm">@ViewBag.StatusMessage</div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">Henüz kayıtlı soru bulunmuyor. Yeni sorular üretmek için "AI'den üret" butonunu kullan.</div>
+}
+else
+{
+    <div class="table-responsive shadow-sm">
+        <table class="table table-dark table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Başlık</th>
+                    <th>Tip</th>
+                    <th>Kategori</th>
+                    <th>Zorluk</th>
+                    <th>Seçenek</th>
+                    <th>Oluşturulma</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var question in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@question.Title</td>
+                        <td><span class="badge bg-secondary">@question.Type</span></td>
+                        <td>@(question.Category ?? "-")</td>
+                        <td>@(question.Difficulty ?? "-")</td>
+                        <td>@question.OptionCount</td>
+                        <td>@question.CreatedAtUtc.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
