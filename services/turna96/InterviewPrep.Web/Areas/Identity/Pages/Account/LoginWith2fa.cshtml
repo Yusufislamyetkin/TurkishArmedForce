@@ -1,0 +1,38 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.LoginWith2faModel
+@{
+    ViewData["Title"] = "İki Faktörlü Giriş";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-xl-5">
+        <div class="auth-card card">
+            <div class="card-body">
+                <h2 class="fw-bold text-white text-center mb-3">Güvenlik doğrulaması</h2>
+                <p class="text-secondary text-center mb-4">
+                    Kimliğini doğrulamak için authenticator uygulamandaki 6 haneli kodu gir.
+                </p>
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="mb-3">
+                        <label asp-for="Input.TwoFactorCode" class="form-label"></label>
+                        <input asp-for="Input.TwoFactorCode" class="form-control form-control-lg text-center" autocomplete="one-time-code" />
+                        <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" asp-for="Input.RememberMachine" />
+                        <label class="form-check-label" asp-for="Input.RememberMachine"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Doğrula ve devam et</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a class="link-light-muted" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Url.Content("~/")">Kodumu kaybettim</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

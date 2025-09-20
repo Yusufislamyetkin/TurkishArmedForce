@@ -1,0 +1,9 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    var activePage = ViewContext.ActionDescriptor.DisplayName;
+}
+<nav class="nav nav-pills flex-column flex-md-row gap-2 mb-4">
+    <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString()?.EndsWith("Index") == true ? "active" : string.Empty)" asp-page="./Index">Profil</a>
+    <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString()?.EndsWith("ChangePassword") == true ? "active" : string.Empty)" asp-page="./ChangePassword">Parola</a>
+    <a class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString()?.EndsWith("SetPassword") == true ? "active" : string.Empty)" asp-page="./SetPassword">Parola Oluştur</a>
+</nav>
