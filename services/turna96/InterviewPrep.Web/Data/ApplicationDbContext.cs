@@ -12,6 +12,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
     }
 
+
     public DbSet<Question> Questions => Set<Question>();
 
     public DbSet<QuestionOption> QuestionOptions => Set<QuestionOption>();
@@ -47,6 +48,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             entity.Property(o => o.Text)
                 .HasMaxLength(512)
                 .IsRequired();
-        });
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
     }
 }

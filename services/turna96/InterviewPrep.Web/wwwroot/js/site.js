@@ -14,6 +14,7 @@
     target.style.width = `${normalized}%`;
 })();
 
+
 (() => {
     const root = document.querySelector('[data-practice-root]');
     if (!root) {
@@ -136,3 +137,4 @@
         });
     });
 })();
+
