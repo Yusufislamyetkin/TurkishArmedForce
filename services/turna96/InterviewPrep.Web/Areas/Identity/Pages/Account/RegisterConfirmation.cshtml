@@ -1,0 +1,25 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Kayıt Onayı";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="auth-card card text-center">
+            <div class="card-body">
+                <div class="feature-icon mx-auto mb-3">
+                    <i class="bi bi-rocket-takeoff fs-4"></i>
+                </div>
+                <h2 class="fw-bold text-white">Hesabın oluşturuldu</h2>
+                <p class="text-secondary">
+                    <strong>@Model.Email</strong> adresine doğrulama bağlantısı gönderdik. Hesabını aktive etmek için e-postanı kontrol et.
+                </p>
+                <p class="text-secondary mb-0">
+                    Bağlantıyı almadıysan spam klasörünü kontrol etmeyi veya birkaç dakika bekleyip tekrar denemeyi unutma.
+                </p>
+                <a class="btn btn-primary mt-4" asp-page="./Login">Giriş ekranına dön</a>
+            </div>
+        </div>
+    </div>
+</div>

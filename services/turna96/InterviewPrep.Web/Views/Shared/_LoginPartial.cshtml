@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@using InterviewPrep.Web.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item text-white small">
+        <span class="badge bg-primary text-uppercase">@((await UserManager.GetUserAsync(User))?.TargetLevel ?? "Aday")</span>
+        <span class="ms-2">@User.Identity?.Name</span>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-outline-light btn-sm" asp-area="Identity" asp-page="/Account/Manage/Index">Profil</a>
+    </li>
+    <li class="nav-item">
+        <form class="d-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post">
+            <button type="submit" class="btn btn-danger btn-sm">Çıkış</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-light btn-sm" asp-area="Identity" asp-page="/Account/Login">Giriş</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-primary btn-sm" asp-area="Identity" asp-page="/Account/Register">Kayıt Ol</a>
+    </li>
+}
+</ul>

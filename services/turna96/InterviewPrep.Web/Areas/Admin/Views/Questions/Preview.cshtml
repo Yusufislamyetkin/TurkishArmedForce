@@ -1,0 +1,76 @@
+@model InterviewPrep.Web.Areas.Admin.ViewModels.QuestionGenerationPreviewViewModel
+@using InterviewPrep.Web.Models.Questions
+@{
+    ViewData["Title"] = "Soru Ön İzleme";
+    var request = ViewBag.GenerationRequest as InterviewPrep.Web.Services.Questions.Models.AiQuestionGenerationRequest;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold">AI üretimi ön izleme</h2>
+        <p class="text-muted mb-0">Soru içeriklerini inceleyip onaylayarak havuza ekleyebilirsin.</p>
+    </div>
+    <a asp-action="Generate" class="btn btn-outline-light">Yeniden üret</a>
+</div>
+
+@if (request is not null)
+{
+    <div class="alert alert-secondary text-dark">
+        <strong>Seviye:</strong> @request.Level &nbsp;|&nbsp;
+        <strong>Kategori:</strong> @request.Category &nbsp;|&nbsp;
+        <strong>Adet:</strong> @request.Count &nbsp;|&nbsp;
+        <strong>Tipler:</strong> @(string.Join(", ", request.Types))
+    </div>
+}
+
+<div class="row g-4">
+    @foreach (var question in Model.Questions)
+    {
+        <div class="col-lg-6">
+            <div class="card bg-black border-secondary h-100">
+                <div class="card-header border-secondary">
+                    <span class="badge bg-info text-dark text-uppercase me-2">@question.Type</span>
+                    <span class="fw-semibold">@question.Title</span>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">@question.Prompt</p>
+
+                    @if (question.Type == QuestionType.MultipleChoice && question.Options.Count > 0)
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var option in question.Options)
+                            {
+                                <li class="list-group-item bg-transparent text-light border-secondary">
+                                    @option.Text
+                                </li>
+                            }
+                        </ul>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(question.ReferenceAnswer))
+                    {
+                        <div class="alert alert-info text-dark mt-3">
+                            <strong>Referans Cevap:</strong>
+                            <div class="mt-2">@question.ReferenceAnswer</div>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(question.TestInput) || !string.IsNullOrWhiteSpace(question.ExpectedOutput))
+                    {
+                        <div class="alert alert-secondary text-dark mt-3">
+                            <div><strong>Test Girdisi:</strong> @question.TestInput</div>
+                            <div><strong>Beklenen Çıktı:</strong> @question.ExpectedOutput</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<form asp-action="ConfirmGeneration" method="post" class="mt-4 d-flex justify-content-end">
+    <input type="hidden" name="generationId" value="@Model.GenerationId" />
+    <button type="submit" class="btn btn-success btn-lg">
+        <i class="bi bi-check-circle"></i> Soruları kaydet
+    </button>
+</form>

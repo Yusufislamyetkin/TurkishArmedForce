@@ -24,3 +24,6 @@ TURNA96 kurumsal ölçekte, yüksek güvenlik ve performans hedefleyen bir mesaj
 11. Docker Compose + Kubernetes dağıtımı
 
 Proje, fazlar ilerledikçe genişleyecek ve kurumsal düzeyde ölçeklenebilir, güvenli bir mesajlaşma altyapısı oluşturacaktır.
+
+## InterviewPrep Faz Güncellemesi
+- Faz 2 kapsamında ASP.NET Core tabanlı InterviewPrep uygulamasına aday tarafı soru çözme akışı ve yönetici soru üretim paneli eklendi.

@@ -1,0 +1,108 @@
+@using InterviewPrep.Web.Models.Questions
+@model InterviewPrep.Web.Models.ViewModels.PracticeSessionViewModel
+
+@{
+    ViewData["Title"] = "Pratik Başlat";
+}
+
+@if (Model.Questions.Count == 0)
+{
+    <div class="alert alert-warning shadow-sm">
+        Şu an için çözebileceğin soru bulunmuyor. Lütfen daha sonra tekrar dene ya da admin panelinden soru ekle.
+    </div>
+}
+else
+{
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <h2 class="fw-semibold">Teknik Pratik Oturumu</h2>
+            <p class="text-muted mb-0">Her doğru cevap 10 puan kazandırır. Yanıtlarını kontrol etmek için kartlardaki butonu kullan.</p>
+        </div>
+        <div class="badge bg-primary-subtle text-primary fw-semibold fs-5 px-4 py-3 shadow-sm">
+            Toplam Puan: <span data-practice-score>0</span>
+        </div>
+    </div>
+
+    <div class="row g-4" data-practice-root data-practice-id="@Model.PracticeId">
+        @foreach (var question in Model.Questions)
+        {
+            <div class="col-12">
+                <div class="card bg-black border-secondary h-100" data-question-card data-question-id="@question.Id" data-question-type="@question.Type">
+                    <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="badge bg-info text-dark text-uppercase me-2">@question.Type</span>
+                            <span class="fw-semibold">@question.Title</span>
+                        </div>
+                        <small class="text-secondary">
+                            @if (!string.IsNullOrWhiteSpace(question.Category))
+                            {
+                                <span class="me-2"><i class="bi bi-stack"></i> @question.Category</span>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(question.Difficulty))
+                            {
+                                <span><i class="bi bi-graph-up"></i> @question.Difficulty</span>
+                            }
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead fs-6">@question.Prompt</p>
+
+                        @switch (question.Type)
+                        {
+                            case QuestionType.MultipleChoice:
+                                {
+                                    var groupName = $"question-{question.Id}";
+                                    <div class="vstack gap-2">
+                                        @foreach (var option in question.Options)
+                                        {
+                                            <div class="form-check p-3 rounded border border-secondary">
+                                                <input class="form-check-input" type="radio" name="@groupName" id="@($"{groupName}-{option.Id}")" value="@option.Id" data-option-input>
+                                                <label class="form-check-label" for="@($"{groupName}-{option.Id}")">@option.Text</label>
+                                            </div>
+                                        }
+                                    </div>
+                                    break;
+                                }
+                            case QuestionType.OpenEnded:
+                                {
+                                    <textarea class="form-control bg-dark text-light border-secondary" rows="4" placeholder="Yanıtını buraya yaz" data-answer-input></textarea>
+                                    break;
+                                }
+                            case QuestionType.Coding:
+                                {
+                                    if (!string.IsNullOrWhiteSpace(question.TestInput) || !string.IsNullOrWhiteSpace(question.ExpectedOutput))
+                                    {
+                                        <div class="alert alert-secondary text-dark small">
+                                            <strong>Test Girdisi:</strong> @question.TestInput<br />
+                                            <strong>Beklenen Çıktı:</strong> @question.ExpectedOutput
+                                        </div>
+                                    }
+                                    <textarea class="form-control font-monospace bg-dark text-light border-secondary" rows="6" placeholder="C# veya psödo kod çözümünü yaz" data-answer-input></textarea>
+                                    break;
+                                }
+                            case QuestionType.Sql:
+                                {
+                                    <textarea class="form-control bg-dark text-light border-secondary" rows="3" placeholder="SELECT ..." data-answer-input></textarea>
+                                    break;
+                                }
+                        }
+                    </div>
+                    <div class="card-footer border-secondary d-flex justify-content-between align-items-center">
+                        <small class="text-secondary">Deneme sayısı sınırlandırılmamıştır. Doğru cevapta kart kilitlenir.</small>
+                        <button type="button" class="btn btn-outline-success" data-submit-question>
+                            <i class="bi bi-lightning-charge"></i> Cevabı Kontrol Et
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+        window.practiceSession = window.practiceSession ?? {};
+        window.practiceSession.active = true;
+    </script>
+}
