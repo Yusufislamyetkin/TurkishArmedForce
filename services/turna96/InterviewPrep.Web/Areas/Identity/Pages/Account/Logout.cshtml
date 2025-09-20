@@ -1,0 +1,19 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.LogoutModel
+@{
+    ViewData["Title"] = "Güvenli Çıkış";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="auth-card card text-center">
+            <div class="card-body">
+                <h2 class="fw-bold text-white">Oturumun kapatıldı</h2>
+                <p class="text-secondary">
+                    Mülakat simülasyonlarını sürdürmek için hazır olduğunda tekrar giriş yapabilirsin.
+                </p>
+                <a class="btn btn-primary" asp-page="./Login">Tekrar giriş yap</a>
+            </div>
+        </div>
+    </div>
+</div>

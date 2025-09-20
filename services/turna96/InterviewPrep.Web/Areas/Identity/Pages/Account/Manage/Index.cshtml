@@ -1,0 +1,52 @@
+@page
+@model InterviewPrep.Web.Areas.Identity.Pages.Account.Manage.IndexModel
+@{
+    ViewData["Title"] = "Profilim";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="auth-card card">
+            <div class="card-body">
+                <h2 class="fw-bold text-white mb-4">Profil Bilgileri</h2>
+                <partial name="_ManageNav" />
+                <partial name="_StatusMessage" for="StatusMessage" />
+                <form method="post" class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="Input.FullName" class="form-label"></label>
+                        <input asp-for="Input.FullName" class="form-control form-control-lg" />
+                        <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control form-control-lg" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Input.CurrentRole" class="form-label"></label>
+                        <input asp-for="Input.CurrentRole" class="form-control form-control-lg" />
+                        <span asp-validation-for="Input.CurrentRole" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Input.TargetLevel" class="form-label"></label>
+                        <select asp-for="Input.TargetLevel" class="form-select form-select-lg">
+                            <option value="Junior">Junior</option>
+                            <option value="Middle">Middle</option>
+                            <option value="Senior">Senior</option>
+                            <option value="Lead">Lead</option>
+                        </select>
+                        <span asp-validation-for="Input.TargetLevel" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-lg">Değişiklikleri kaydet</button>
+                        <a asp-page="./ChangePassword" class="btn btn-outline-light btn-lg ms-2">Parolayı değiştir</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
